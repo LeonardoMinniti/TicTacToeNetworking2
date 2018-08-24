@@ -24,6 +24,8 @@ public class Client : MonoBehaviour
     public SpriteRenderer X;
     public SpriteRenderer O;
     public SpriteRenderer Reset = null;
+    public AudioSource shotP1;
+    public AudioSource shotP2;
     public static bool IsX;
     public int Rounds;
     public string clientName;
@@ -46,6 +48,11 @@ public class Client : MonoBehaviour
         gameManagerScript = gameManager.GetComponent<GameManager>();
         Rounds = 1;
         closedMarks = new List<string>();
+        GameManager.round = 1;
+        Player1Winner.SetActive(false);
+        Player2Winner.SetActive(false);
+        DrawScreen.SetActive(false);
+        GameManager.winner = false;
     }
 
 
@@ -161,12 +168,14 @@ public class Client : MonoBehaviour
 
         if (data == "&X")
         {
+            
             IsX = true;
             Debug.Log("X");
 
         }
         else if (data == "&O")
         {
+            
             IsX = false;
             Debug.Log("O");
 
@@ -243,21 +252,21 @@ public class Client : MonoBehaviour
         {
             GameObject.Find(data).GetComponent<SpriteRenderer>().sprite = O.sprite;
             Rounds++;
+            shotP1.Play();
         }
         else if (Rounds % 2 != 0)
         {
+            
             GameObject.Find(data).GetComponent<SpriteRenderer>().sprite = X.sprite;
             Rounds++;
+            shotP2.Play();
         }
     }
     public void Restart(string data)
     {
-        GameManager.round = 1;
-        Player1Winner.SetActive(false);
-        Player2Winner.SetActive(false);
-        DrawScreen.SetActive(false);
-        GameManager.winner = false;
-        SceneManager.LoadScene("SampleScene");
+        this.tcpSocket.Close();
+        tcpSocket.Close();
+        SceneManager.LoadScene("MainMenu");
 
         /*GameObject.Find("1.1").GetComponent<SpriteRenderer>().sprite = null;
         GameObject.Find("1.2").GetComponent<SpriteRenderer>().sprite = null;

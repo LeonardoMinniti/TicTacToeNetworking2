@@ -1,8 +1,10 @@
 WindowsStandalone
 PlayerPath?
-C:/Users/Rickman/Desktop/TTT/Tic Tac Toe Network.exe
+C:/Users/Leona/Desktop/TicTacToeNetworking2/buildTest/Tic Tac Toe Network.exe
 SceneListBegin?
+Assets/Scenes/MainMenu.unity
 Assets/Scenes/Game.unity
+Assets/Scenes/Credits.unity
 SceneListEnd?
 c422dd62785a6d0afa870fbd111886ce Unity.TextMeshPro.dll:TMPro.TMP_SelectionCaret
 7b803eb2910e9b4cd5e521ae07b9f7d6 Unity.TextMeshPro.dll:TMPro.TMP_Dropdown
@@ -20,7 +22,7 @@ c7dd12c15208b0447e101f80038706df UnityEngine.Timeline.dll:UnityEngine.Timeline.A
 64f3a13c1277a7f1324321d93d0ec13b UnityEngine.Timeline.dll:UnityEngine.Timeline.TimelineAsset
 f6637497451c9a030c421de4a1ad5cdb Unity.TextMeshPro.dll:TMPro.TMP_ScrollbarEventHandler
 b14b4630cc47b6e9ea8a644551a6a8cc Unity.TextMeshPro.dll:TMPro.TMP_Text
-486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:.ButtonScripts
+ce4f4c635a365a719998af416ba7c86d Assembly-CSharp.dll:.ButtonScripts
 53cefe5d98cadefbab750835e70b89c0 UnityEngine.UI.dll:UnityEngine.UI.AspectRatioFitter
 486cd95c82d8305219c352c06b776e1f UnityEngine.UI.dll:UnityEngine.EventSystems.BaseInput
 da2091a04d360891450faf16cdf621f1 UnityEngine.UI.dll:UnityEngine.UI.Button
@@ -121,7 +123,7 @@ d75dc834c5dec688db75a55a1724c90f UnityEngine.HoloLens.dll:UnityEngine.Audio.Audi
 e1ea12ca952c81d81a9a21fdf34446ed UnityEngine.HoloLens.dll:UnityEngine.EventSystems.HoloLensInputModule
 98d69a140ec0084cde3b6a5e09aea295 UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.SpatialMappingCollider
 dfd33ff9ae3ce8d7ca1f22b475ec2387 UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.SpatialMappingRenderer
-2921c2b77c7dacf9acf70ad3c710ea0c Assembly-CSharp.dll:.Client
+d29935aaad40e05e240da8362777a9e6 Assembly-CSharp.dll:.Client
 96f3ea9f23b6f08e60710ebb4af49174 Unity.TextMeshPro.dll:TMPro.TMP_SpriteAsset
 f16835701e71dd5d6fb1fed4b7aff1d8 Unity.TextMeshPro.dll:TMPro.TMP_Asset
 3b382400227f0e30eb914a8ad94ccf66 Assembly-CSharp.dll:.Mark

@@ -15,7 +15,7 @@ public class Server : MonoBehaviour
     public int port = 6321;
 
 
-    private List<ServerClient> clients;
+    public static List<ServerClient> clients;
     private List<ServerClient> disconnectList;
     private TcpListener server;
     private bool stop = false;

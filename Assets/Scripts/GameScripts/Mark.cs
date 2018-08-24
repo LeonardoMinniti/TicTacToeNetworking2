@@ -22,9 +22,10 @@ public class Mark : MonoBehaviour
                 sendInfo = this.gameObject.name;
             }
         }
-        
+        else
+        {
             Debug.Log("this slot is already Taken");
-        
+        }
 
         if (sendInfo != GameManager.tempSendInfo)
         {
