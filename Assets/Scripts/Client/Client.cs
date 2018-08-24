@@ -7,37 +7,36 @@ using System.Net.Sockets;
 using UnityEngine;
 using System;
 
-public class Client : MonoBehaviour {
+public class Client : MonoBehaviour
+{
 
-    public GameObject ChatContainer;
-    public GameObject MessagePrefab;
+    public GameObject Chat;
+    public GameObject MsgPrefab;
     public GameObject HostButton;
     public GameObject LoginPanel;
     public GameObject TicTacToe;
     public GameObject Waiting;
-    public GameObject isPlayer1;
-    public GameObject isPlayer2;
+    public GameObject IsPlayer1;
+    public GameObject IsPlayer2;
     public GameObject Player1Winner;
     public GameObject Player2Winner;
     public GameObject DrawScreen;
-    public int Rounds;
     public SpriteRenderer X;
     public SpriteRenderer O;
     public SpriteRenderer Reset = null;
     public static bool IsX;
-
-
+    public int Rounds;
     public string clientName;
 
     private List<String> closedMarks;
-    private bool socketReady;
-    private string tempSendInfo;
-    private TcpClient socket;
+    private TcpClient tcpSocket;
     private NetworkStream stream;
     private StreamWriter writer;
     private StreamReader reader;
     private GameObject gameManager;
     private GameManager gameManagerScript;
+    private bool isSocketReady;
+    private string tempSendInfo;
     private bool isGameTicTacToeActive;
 
 
@@ -46,35 +45,34 @@ public class Client : MonoBehaviour {
         gameManager = GameObject.Find("GameManager");
         gameManagerScript = gameManager.GetComponent<GameManager>();
         Rounds = 1;
-        gameManagerScript.enabled = false;
         closedMarks = new List<string>();
     }
 
 
     public void ConnectToServer()
     {
-        if (socketReady)
+        if (isSocketReady)
             return;
 
 
-        string host;
-        string name;
+        string hostIP;
+        string username;
         int port;
 
-        host = GameObject.Find("IPInput").GetComponent<InputField>().text;
-        name = GameObject.Find("NameInput").GetComponent<InputField>().text;
-        clientName = name;
+        hostIP = GameObject.Find("IPInput").GetComponent<InputField>().text;
+        username = GameObject.Find("NameInput").GetComponent<InputField>().text;
+        clientName = username;
         int.TryParse(GameObject.Find("PortInput").GetComponent<InputField>().text, out port);
 
         //create the socket
 
         try
         {
-            socket = new TcpClient(host, port);
-            stream = socket.GetStream();
+            tcpSocket = new TcpClient(hostIP, port);
+            stream = tcpSocket.GetStream();
             writer = new StreamWriter(stream);
             reader = new StreamReader(stream);
-            socketReady = true;
+            isSocketReady = true;
             LoginPanel.SetActive(false);
         }
         catch(Exception e)
@@ -87,21 +85,18 @@ public class Client : MonoBehaviour {
 
     private void Update()
     {
-        if (Server.serverStarted)
+        if (Server.ServerStarted)
         {
             HostButton.SetActive(false);
         }
 
-        if(gameManagerScript.enabled == true)
+        if (tempSendInfo != GameManager.tempSendInfo)
         {
-            if (tempSendInfo != GameManager.tempSendInfo)
-            {
-                tempSendInfo = GameManager.tempSendInfo;
-                Send("&Mark|" + tempSendInfo);
-            }
+            tempSendInfo = GameManager.tempSendInfo;
+            Send("&Mark|" + tempSendInfo);
         }
 
-        if (socketReady)
+        if (isSocketReady)
         {
             if (stream.DataAvailable)
             {
@@ -115,13 +110,13 @@ public class Client : MonoBehaviour {
 
         if (Rounds % 2 == 0)
         {
-            isPlayer1.SetActive(false);
-            isPlayer2.SetActive(true);
+            IsPlayer1.SetActive(false);
+            IsPlayer2.SetActive(true);
         }
         else if(Rounds % 2 != 0 && Rounds != 0)
         {
-            isPlayer1.SetActive(true);
-            isPlayer2.SetActive(false);
+            IsPlayer1.SetActive(true);
+            IsPlayer2.SetActive(false);
         }
         if (GameManager.winner)
         {
@@ -148,7 +143,7 @@ public class Client : MonoBehaviour {
 
     private void OnIncomingData(string data)
     {
-        if (Server.isWaitingForSecondPlayer)
+        if (Server.IsWaitingForSecondPlayer)
         {
             Waiting.SetActive(true);
             TicTacToe.SetActive(false);
@@ -166,19 +161,21 @@ public class Client : MonoBehaviour {
 
         if (data == "&X")
         {
-            gameManagerScript.enabled = true;
             IsX = true;
+            Debug.Log("X");
+
         }
         else if (data == "&O")
         {
-            //gameManagerScript.enabled = false;
             IsX = false;
+            Debug.Log("O");
+
 
         }
 
         if (!data.Contains("&Mark") && !data.Contains("&X") && !data.Contains("&O"))
         {
-            GameObject go = Instantiate(MessagePrefab, ChatContainer.transform);
+            GameObject go = Instantiate(MsgPrefab, Chat.transform);
             go.GetComponentInChildren<Text>().text = data;
         }
         else
@@ -200,11 +197,9 @@ public class Client : MonoBehaviour {
 
         if (!closedMarks.Contains(data))
         {
-            ChangeSprite(Rounds, data);
-        }
-            /*switch (data)
+            switch (data)
             {
-                
+
                 case "1.1":
                     ChangeSprite(Rounds, data);
                     break;
@@ -235,7 +230,9 @@ public class Client : MonoBehaviour {
                 default:
                     break;
 
-            }*/
+            }
+        }
+           
     }
 
     private void ChangeSprite(int rounds, string data)
@@ -245,27 +242,11 @@ public class Client : MonoBehaviour {
         if (Rounds % 2 == 0)
         {
             GameObject.Find(data).GetComponent<SpriteRenderer>().sprite = O.sprite;
-            if (!IsX)
-            {
-                //gameManagerScript.enabled = false;
-            }
-            if (IsX)
-            {
-                gameManagerScript.enabled = true;
-            }
             Rounds++;
         }
         else if (Rounds % 2 != 0)
         {
             GameObject.Find(data).GetComponent<SpriteRenderer>().sprite = X.sprite;
-            if (IsX)
-            {
-                //gameManagerScript.enabled = false;
-            }
-            if (!IsX)
-            {
-                gameManagerScript.enabled = true;
-            }
             Rounds++;
         }
     }
@@ -307,7 +288,7 @@ public class Client : MonoBehaviour {
 
     private void Send(string data)
     {
-        if (!socketReady)
+        if (!isSocketReady)
             return;
         writer.WriteLine(data);
         writer.Flush();
@@ -322,13 +303,13 @@ public class Client : MonoBehaviour {
 
     private void CloseSocket()
     {
-        if (!socketReady)
+        if (!isSocketReady)
             return;
 
         writer.Close();
         reader.Close();
-        socket.Close();
-        socketReady = false;
+        tcpSocket.Close();
+        isSocketReady = false;
     }
 
     private void OnApplicationQuit()

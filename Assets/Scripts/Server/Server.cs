@@ -6,33 +6,34 @@ using System.Net;
 using System.Net.Sockets;
 using UnityEngine;
 
-public class Server : MonoBehaviour {
+public class Server : MonoBehaviour
+{
+
+    public static string TempData;
+    public static bool ServerStarted;
+    public static bool IsWaitingForSecondPlayer;
+    public int port = 6321;
+
 
     private List<ServerClient> clients;
     private List<ServerClient> disconnectList;
-
-    public int port = 6321;
     private TcpListener server;
-    public static string tempData;
-    public static bool serverStarted;
-    public static bool isWaitingForSecondPlayer;
     private bool stop = false;
+    private bool sendXOrO;
     private int count;
 
 
     private void Update()
     {
-
-        if (!serverStarted)
+        if (!ServerStarted)
             return;
-
         if (clients.Count <= 1)
         {
-            isWaitingForSecondPlayer = true;
+            IsWaitingForSecondPlayer = true;
         }
         else
         {
-            isWaitingForSecondPlayer = false;
+            IsWaitingForSecondPlayer = false;
         }
 
         foreach (ServerClient c in clients)
@@ -40,6 +41,7 @@ public class Server : MonoBehaviour {
             if (!IsConnected(c.tcp))
             {
                 c.tcp.Close();
+                clients.Remove(c);
                 disconnectList.Add(c);
                 continue;
             }
@@ -64,33 +66,35 @@ public class Server : MonoBehaviour {
             disconnectList.RemoveAt(i);
         }
 
-        if (serverStarted)
+        if (clients.Count < 2)
         {
-            if(clients.Count >= 2 && count <= 2)
-            {
-                try
-                {
-                    StreamWriter writer = new StreamWriter(clients[0].tcp.GetStream());
-                    writer.WriteLine("&X");
-                    writer.Flush();
-                }
-                catch(Exception e)
-                {
-                    Debug.Log("Write error : " + e.Message + "to client ");
-                }
+            sendXOrO = true;
+        }
 
-                try
-                {
-                    StreamWriter writer1 = new StreamWriter(clients[1].tcp.GetStream());
-                    writer1.WriteLine("&O");
-                    writer1.Flush();
-                }
-                catch (Exception e)
-                {
-                    Debug.Log("Write error : " + e.Message + "to client ");
-                }
-                count++;
+        if(clients.Count == 2 && sendXOrO)
+        {
+            try
+            {
+                StreamWriter writer = new StreamWriter(clients[0].tcp.GetStream());
+                writer.WriteLine("&X");
+                writer.Flush();
             }
+            catch(Exception e)
+            {
+                Debug.Log("Write error : " + e.Message + "to client ");
+            }
+
+            try
+            {
+                StreamWriter writer1 = new StreamWriter(clients[1].tcp.GetStream());
+                writer1.WriteLine("&O");
+                writer1.Flush();
+            }
+            catch (Exception e)
+            {
+                
+            }
+            sendXOrO = false;
         }
     }
 
@@ -105,7 +109,7 @@ public class Server : MonoBehaviour {
             server.Start();
 
             StartListening();
-            serverStarted = true;
+            ServerStarted = true;
             Debug.Log("Server has been started on port " + port.ToString());
         }
         catch (Exception e)

@@ -3302,22 +3302,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c34d325f5681904bb2144c7ebb6bcfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ChatContainer: {fileID: 45758767}
-  MessagePrefab: {fileID: 1002070311613072, guid: 3ae7c968eae158d42a39566b58d1e66c,
-    type: 2}
+  Chat: {fileID: 45758767}
+  MsgPrefab: {fileID: 1002070311613072, guid: 3ae7c968eae158d42a39566b58d1e66c, type: 2}
   HostButton: {fileID: 1886660513}
   LoginPanel: {fileID: 929099289}
   TicTacToe: {fileID: 1575026109}
   Waiting: {fileID: 1686555999}
-  isPlayer1: {fileID: 404939988}
-  isPlayer2: {fileID: 225836677}
+  IsPlayer1: {fileID: 404939988}
+  IsPlayer2: {fileID: 225836677}
   Player1Winner: {fileID: 1861302676}
   Player2Winner: {fileID: 940819015}
   DrawScreen: {fileID: 640369030}
-  Rounds: 0
   X: {fileID: 167892631}
   O: {fileID: 1803799271}
   Reset: {fileID: 0}
+  Rounds: 0
   clientName: 
 --- !u!114 &989080499
 MonoBehaviour:

@@ -1,8 +1,8 @@
 WindowsStandalone
 PlayerPath?
-C:/Users/Leona/Desktop/Tic-Tac-Toe-Networking/buildTest/Tic Tac Toe Network.exe
+C:/Users/Rickman/Desktop/TTT/Tic Tac Toe Network.exe
 SceneListBegin?
-Assets/Scenes/SampleScene.unity
+Assets/Scenes/Game.unity
 SceneListEnd?
 c422dd62785a6d0afa870fbd111886ce Unity.TextMeshPro.dll:TMPro.TMP_SelectionCaret
 7b803eb2910e9b4cd5e521ae07b9f7d6 Unity.TextMeshPro.dll:TMPro.TMP_Dropdown
@@ -121,7 +121,7 @@ d75dc834c5dec688db75a55a1724c90f UnityEngine.HoloLens.dll:UnityEngine.Audio.Audi
 e1ea12ca952c81d81a9a21fdf34446ed UnityEngine.HoloLens.dll:UnityEngine.EventSystems.HoloLensInputModule
 98d69a140ec0084cde3b6a5e09aea295 UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.SpatialMappingCollider
 dfd33ff9ae3ce8d7ca1f22b475ec2387 UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.SpatialMappingRenderer
-eb9c14024bfae2eda059b6d18d89cd63 Assembly-CSharp.dll:.Client
+2921c2b77c7dacf9acf70ad3c710ea0c Assembly-CSharp.dll:.Client
 96f3ea9f23b6f08e60710ebb4af49174 Unity.TextMeshPro.dll:TMPro.TMP_SpriteAsset
 f16835701e71dd5d6fb1fed4b7aff1d8 Unity.TextMeshPro.dll:TMPro.TMP_Asset
 3b382400227f0e30eb914a8ad94ccf66 Assembly-CSharp.dll:.Mark
