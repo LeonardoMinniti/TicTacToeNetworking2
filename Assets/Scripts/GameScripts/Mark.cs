@@ -11,7 +11,7 @@ public class Mark : MonoBehaviour
 
     public void OnMouseDown()
     {
-        if(box.sprite == null)
+        if (box.sprite == null)
         {
             if (GameManager.round % 2 == 0 && !Client.IsX)
             {
@@ -22,10 +22,9 @@ public class Mark : MonoBehaviour
                 sendInfo = this.gameObject.name;
             }
         }
-        else
-        {
+        
             Debug.Log("this slot is already Taken");
-        }
+        
 
         if (sendInfo != GameManager.tempSendInfo)
         {

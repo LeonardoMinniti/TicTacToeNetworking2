@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine.UI;
 using System.IO;
+using UnityEngine.SceneManagement;
 using System.Net.Sockets;
 using UnityEngine;
 using System;
@@ -126,7 +127,7 @@ public class Client : MonoBehaviour {
         {
             if (!isGameTicTacToeActive)
             {
-                GameObject.Find("GameTicTacToe").SetActive(false);
+                TicTacToe.SetActive(false);
                 if (Rounds % 2 != 0)
                 {
                     Player1Winner.SetActive(true);
@@ -199,8 +200,11 @@ public class Client : MonoBehaviour {
 
         if (!closedMarks.Contains(data))
         {
-            switch (data)
+            ChangeSprite(Rounds, data);
+        }
+            /*switch (data)
             {
+                
                 case "1.1":
                     ChangeSprite(Rounds, data);
                     break;
@@ -231,8 +235,7 @@ public class Client : MonoBehaviour {
                 default:
                     break;
 
-            }
-        }
+            }*/
     }
 
     private void ChangeSprite(int rounds, string data)
@@ -268,16 +271,35 @@ public class Client : MonoBehaviour {
     }
     public void Restart(string data)
     {
-        for (int i = 0; i < 9; i++)
+        GameManager.round = 1;
+        Player1Winner.SetActive(false);
+        Player2Winner.SetActive(false);
+        DrawScreen.SetActive(false);
+        GameManager.winner = false;
+        SceneManager.LoadScene("SampleScene");
+
+        /*GameObject.Find("1.1").GetComponent<SpriteRenderer>().sprite = null;
+        GameObject.Find("1.2").GetComponent<SpriteRenderer>().sprite = null;
+        GameObject.Find("1.3").GetComponent<SpriteRenderer>().sprite = null;
+        GameObject.Find("2.1").GetComponent<SpriteRenderer>().sprite = null;
+        GameObject.Find("2.2").GetComponent<SpriteRenderer>().sprite = null;
+        GameObject.Find("2.3").GetComponent<SpriteRenderer>().sprite = null;
+        GameObject.Find("3.1").GetComponent<SpriteRenderer>().sprite = null;
+        GameObject.Find("3.2").GetComponent<SpriteRenderer>().sprite = null;
+        GameObject.Find("3.3").GetComponent<SpriteRenderer>().sprite = null;
+
+        /*for (int i = 0; i < 9; i++)
         {
             gameManagerScript.tiles[i].sprite = null;
         }
-        Player1Winner.SetActive(false);
+        */
+        /*Player1Winner.SetActive(false);
         Player2Winner.SetActive(false);
         DrawScreen.SetActive(false);
         Rounds = 1;
         TicTacToe.SetActive(true);
-        
+        */
+
         //GameObject.Find("GameTicTacToe").SetActive(true);
 
     }

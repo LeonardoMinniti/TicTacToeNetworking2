@@ -10,7 +10,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace>
     </RootNamespace>
-    <ProjectGuid>{EF26E3BD-57A2-486F-0866-84E5767C2966}</ProjectGuid>
+    <ProjectGuid>{1D3F1E9F-9CA7-5B9D-BDB0-DF89E0A5565D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -67,16 +67,16 @@
     <Compile Include="Assets\Scripts\GameScripts\Mark.cs" />
     <Compile Include="Assets\Scripts\Server\Server.cs" />
     <Reference Include="UnityEditor.StandardEvents">
-      <HintPath>C:/Users/Leona/Desktop/Tic-Tac-Toe-Networking/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
+      <HintPath>C:/Users/Leona/Desktop/TicTacToeNetworking2/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>C:/Users/Leona/Desktop/Tic-Tac-Toe-Networking/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>C:/Users/Leona/Desktop/TicTacToeNetworking2/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.PackageManagerUI.Editor">
-      <HintPath>C:/Users/Leona/Desktop/Tic-Tac-Toe-Networking/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+      <HintPath>C:/Users/Leona/Desktop/TicTacToeNetworking2/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>C:/Users/Leona/Desktop/Tic-Tac-Toe-Networking/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+      <HintPath>C:/Users/Leona/Desktop/TicTacToeNetworking2/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2018.2.1f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
